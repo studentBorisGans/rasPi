@@ -2,7 +2,7 @@
 
 # Start the cloudflared tunnel
 echo "Starting Cloudflare Access TCP tunnel..."
-sudo cloudflared access tcp --hostname ssh.borisgans.com --url localhost:4444 &
+sudo cloudflared access tcp --hostname ssh.borisgans.com --url localhost:22 &
 
 # Save the PID of the cloudflared process
 CLOUDFLARED_PID=$!
@@ -14,8 +14,8 @@ sleep 5
 echo "Connecting to the Raspberry Pi via SSH..."
 echo "For more connections, ssh pubRas"
 
-# ssh borisgans@localhost
-ssh pubRas
+ssh -v -i ~/.ssh/id_rsa borisgans@localhost
+# ssh pubRas1
 
 # Clean up the cloudflared tunnel after the SSH session ends
 echo "Stopping Cloudflare Access TCP tunnel..."
